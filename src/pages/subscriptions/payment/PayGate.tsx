@@ -1,7 +1,7 @@
 import React from "react";
 import PayGateButton from "./PayGateButton";
 import { combineUrlAndPath } from "../../../auth/utils/combineUrlAndPath";
-import { REACT_APP_PAYWEB3_API } from "../../../env"
+import { REACT_APP_PAYWEB3_API } from "../../../env";
 import { useTenant } from "../../../auth/hooks/useTenant";
 import { useAuth } from "../../../auth/context/AuthContext";
 
@@ -45,10 +45,16 @@ const PayGate: React.FC<PayGateProps> = ({ onGetOrder, onPaid }) => {
   const createOrder = async () => {
     try {
       const order = await onGetOrder();
-      if (!order) throw new Error("Order creation failed.");
+      if (!order) {
+        console.error("Order creation failed: No order returned.");
+        throw new Error("Order creation failed.");
+      }
 
       const response = await fetch(
-        combineUrlAndPath(REACT_APP_PAYWEB3_API, `initiate.php?order_id=${order.id}`),
+        combineUrlAndPath(
+          REACT_APP_PAYWEB3_API,
+          `initiate.php?order_id=${order.id}`
+        ),
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -63,7 +69,16 @@ const PayGate: React.FC<PayGateProps> = ({ onGetOrder, onPaid }) => {
       }
 
       const result = await response.json();
+      console.log("PAYGATE order created:",  JSON.stringify(result));
       const { payment_id, checksum } = result;
+
+      console.log("PAYGATE payment ID:", payment_id);
+      console.log("PAYGATE checksum:", checksum);
+
+      if (!payment_id || !checksum) {
+        console.error("Invalid response from PAYGATE:", JSON.stringify(result));
+        throw new Error("Invalid response from PAYGATE.");
+      }
 
       submitPayment(payment_id, checksum);
       return checksum;

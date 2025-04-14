@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../../components/Button';
 
 interface PayGateButtonProps {
   createOrder: () => void;
@@ -14,12 +15,13 @@ const PayGateButton: React.FC<PayGateButtonProps> = ({ createOrder }) => {
   };
 
   return (
-    <button
-      className="w-full h-14 bg-blue-500 text-white font-bold rounded hover:bg-blue-600"
+    <Button
+    variant='primary'
+      className="w-full h-14"
       onClick={click}
     >
       Pay with PayGate
-    </button>
+    </Button>
   );
 };
 

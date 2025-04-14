@@ -2,6 +2,7 @@ import { accessElf } from "./utils/accessElf"
 import { useState } from "react"
 import { useAuth } from "./hooks/useAuth"
 import { useNavigate } from "react-router-dom"
+import Button from "../components/Button"
 
 const LoginPage = () => {
   accessElf.track("LoginPage")
@@ -28,14 +29,14 @@ const LoginPage = () => {
 
   return (
   <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-  <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 relative">
+  <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-4 relative">
     <button
       className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
       onClick={() => navigate("/")}
     >
       X
     </button>
-    <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Sign In</h2>
+    <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">Sign In</h2>
     
     <form className="space-y-4">
       <div>
@@ -62,24 +63,24 @@ const LoginPage = () => {
 
       <div className="flex items-center justify-between">
         <label className="flex items-center">
-          <input type="checkbox" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"/>
+          <input type="checkbox" className="rounded border-gray-300 text-primary focus:ring-indigo-500"/>
           <span className="ml-2 text-sm text-gray-600">Remember me</span>
         </label>
       </div>
       <div>
         
-      <a href="#" className="text-sm text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+      <a href="#" className="text-sm text-primary hover:text-indigo-500">Forgot password?</a>
       </div>
 
-      <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors"
+      <Button className="w-full bg-primary hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors"
         onClick={handleLogin}>
         Sign In
-      </button>
+      </Button>
     </form>
 
-    <div className="mt-6 text-center text-sm text-gray-600">
+    <div className="mt-3 text-center text-sm text-gray-600">
       Don't have an account? 
-      <a href="#" className="text-indigo-600 hover:text-indigo-500 font-medium ms-2">Sign up</a>
+      <Button variant="light" href="/register" className="text-primary hover:text-indigo-500 font-medium ms-2">Sign up</Button>
     </div>
   </div>
 </div>)}

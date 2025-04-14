@@ -90,7 +90,7 @@ const BuySubscriptionPage = () => {
           </div>
         ))}
       </div>
-      <div className="flex flex-col items-center mt-8">
+      <div className="flex flex-col items-center my-3">
         <p className="text-lg font-semibold">
           Total: {currency} {total.toFixed(2)}
         </p>

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 import { videoMimeTypes, imageMimeTypes, validateExtension } from "../utils/media";
 import { combineUrlAndPath } from "../utils/combineUrlAndPath";
+import { REACT_APP_CONTENT_API } from "../../env";
 
 const useFileLoader = (
   prefix = "FILE",
@@ -10,7 +11,7 @@ const useFileLoader = (
   onProgress
 ) => {
   const { token } = useAuth();
-  const url = combineUrlAndPath(process.env.REACT_APP_CONTENT_API, `uploadfile.php?pre=${prefix}`);
+  const url = combineUrlAndPath(REACT_APP_CONTENT_API, `uploadfile.php?pre=${prefix}`);
   const [fileData, setFileData] = useState();
   const fileInputRef = useRef();
   const [file, setFile] = useState();
@@ -18,7 +19,7 @@ const useFileLoader = (
   const [loaded, setLoaded] = useState();
   const [total, setTotal] = useState();
   const [files, setFiles] = useState();
-  const [status, setStatus] = useState();
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
   const isFileSelected = !!fileData;
@@ -120,6 +121,7 @@ const useFileLoader = (
       );
       xhr.open("POST", url);
       xhr.setRequestHeader("token", token);
+      xhr.setRequestHeader("Authorization", `Bearer ${token}`);
       xhr.send(formData);
     });
   };
@@ -168,6 +170,7 @@ const useFileLoader = (
   const SuccessHandler = (e) => {
     const res = e.target.responseText;
     const response = JSON.parse(res);
+    console.log("Success Handler", response);
     setStatus("File upload complete");
     setPercent(100);
     setLoaded(total);
@@ -178,7 +181,8 @@ const useFileLoader = (
     return response;
   };
 
-  const ErrorHandler = () => {
+  const ErrorHandler = (e) => {
+    console.error("Error Handler", e);
     setLoading(false);
     setStatus("File upload failed");
     if (onError) {

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import PayGate from './payment/PayGate';
-import { useTenant } from '../../auth/hooks/useTenant';
-import { useAuth } from '../../auth/hooks/useAuth';
-import { useSubscriptions } from '../../auth/context/SubscriptionsContext';
-import { accessElf } from '../../auth/utils/accessElf';
+import React, { useState, useEffect } from "react";
+import PayGate from "./payment/PayGate";
+import { useTenant } from "../../auth/hooks/useTenant";
+import { useAuth } from "../../auth/hooks/useAuth";
+import { useSubscriptions } from "../../auth/context/SubscriptionsContext";
+import { accessElf } from "../../auth/utils/accessElf";
+import Container from "../../components/Container";
+import Button from "../../components/Button";
 
 interface SubscriptionItem {
   name?: string;
@@ -15,10 +17,13 @@ interface PaymentProps {
   onPaid?: () => void;
 }
 
-const Payment: React.FC<PaymentProps> = ({ subscriptionItems = [], onPaid }) => {
-  const [amount, setAmount] = useState<string>('0.00');
-  const [error, setError] = useState<string>('');
-  const [success, setSuccess] = useState<string>('');
+const Payment: React.FC<PaymentProps> = ({
+  subscriptionItems = [],
+  onPaid,
+}) => {
+  const [amount, setAmount] = useState<string>("0.00");
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const { tenant } = useTenant();
   const { token } = useAuth();
   const { createOrder } = useSubscriptions();
@@ -27,7 +32,10 @@ const Payment: React.FC<PaymentProps> = ({ subscriptionItems = [], onPaid }) => 
 
   useEffect(() => {
     if (subscriptionItems.length > 0) {
-      const total = subscriptionItems.reduce((sum, item) => sum + (item.price || 0), 0);
+      const total = subscriptionItems.reduce(
+        (sum, item) => sum + (item.price || 0),
+        0
+      );
       setAmount(total.toFixed(2));
     }
   }, [subscriptionItems]);
@@ -38,36 +46,47 @@ const Payment: React.FC<PaymentProps> = ({ subscriptionItems = [], onPaid }) => 
       return {
         id: order.order_id,
         total_price: order.total_price,
-        currency: 'ZAR'
+        currency: "ZAR",
       };
     } else {
-      setError('Failed to create order');
+      setError("Failed to create order");
       return null;
     }
   };
 
   const handlePaymentSuccess = () => {
-    setSuccess('Payment completed successfully!');
-    setError('');
-    if (typeof onPaid === 'function') {
+    setSuccess("Payment completed successfully!");
+    setError("");
+    if (typeof onPaid === "function") {
       onPaid();
     }
   };
 
   return (
-      <div className="max-w-xl mx-auto bg-white shadow-md rounded-md p-6">
+    <Container>
+      <div className="p-2">
         <h2 className="text-center text-2xl font-bold mb-4">Make Payment</h2>
 
         {error && (
           <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
-            <button className="float-right text-red-500" onClick={() => setError('')}>x</button>
+            <button
+              className="float-right text-red-500"
+              onClick={() => setError("")}
+            >
+              x
+            </button>
             {error}
           </div>
         )}
 
         {success && (
           <div className="bg-green-100 text-green-700 p-3 rounded mb-4">
-            <button className="float-right text-green-500" onClick={() => setSuccess('')}>x</button>
+            <button
+              className="float-right text-green-500"
+              onClick={() => setSuccess("")}
+            >
+              x
+            </button>
             {success}
           </div>
         )}
@@ -80,7 +99,7 @@ const Payment: React.FC<PaymentProps> = ({ subscriptionItems = [], onPaid }) => 
             </div>
             {subscriptionItems.map((item, index) => (
               <div key={index} className="flex justify-between py-2 border-b">
-                <span>{item.name || 'Unnamed Item'}</span>
+                <span>{item.name || "Unnamed Item"}</span>
                 <span>R {(item.price || 0).toFixed(2)}</span>
               </div>
             ))}
@@ -104,11 +123,10 @@ const Payment: React.FC<PaymentProps> = ({ subscriptionItems = [], onPaid }) => 
           />
         </div>
 
-        <PayGate
-          onGetOrder={handleGetOrder}
-          onPaid={handlePaymentSuccess}
-        />
+        <PayGate onGetOrder={handleGetOrder} onPaid={handlePaymentSuccess} />
+        <Button variant="secondary" className="mt-2 w-full" to="/home">Cancel</Button>
       </div>
+    </Container>
   );
 };
 

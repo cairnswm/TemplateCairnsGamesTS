@@ -15,7 +15,7 @@ import { combineUrlAndPath } from "../utils/combineUrlAndPath";
 import useEventing from "../hooks/useEventing";
 import { REACT_APP_AUTH_API } from "../../env";
 
-interface User {
+export type User = {
   email: string;
   lastname: string;
   firstname: string;

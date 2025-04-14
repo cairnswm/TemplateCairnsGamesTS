@@ -40,14 +40,14 @@ function ForgotPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors"
+            className="w-full bg-primary hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors"
           >
             Reset Password
           </button>
         </form>
         <div className="mt-6 text-center text-sm text-gray-600">
           Remembered your password?{" "}
-          <a href="#" className="text-indigo-600 hover:text-indigo-500 font-medium">
+          <a href="#" className="text-primary hover:text-indigo-500 font-medium">
             Sign in
           </a>
         </div>

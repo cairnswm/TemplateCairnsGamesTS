@@ -1,11 +1,11 @@
 import { IconProps } from "./IconProps";
 
-const CaretDownFill: React.FC<IconProps> = ({ height=16, color, className }) => {
+const CaretDownFill: React.FC<IconProps> = ({ size=16, color, className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={height}
-      height={height}
+      width={size}
+      height={size}
       fill={color ?? "currentColor"}
       className={className}
       viewBox="0 0 16 16"
