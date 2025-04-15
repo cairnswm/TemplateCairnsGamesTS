@@ -3,7 +3,7 @@ import { useAuth } from "../auth/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { accessElf } from "../../auth/utils/accessElf";
 import { useTenant } from "../../auth/hooks/useTenant";
-import Navigation from "../../application/Navigation";
+import Navigation from "../../components/Navigation";
 import { useSettings } from "../../auth/context/SettingsContext";
 import ApplicationParamsTable from "./ApplicationParamsTable";
 import SettingsTable from "./SettingsTable";

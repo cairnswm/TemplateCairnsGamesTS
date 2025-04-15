@@ -364,9 +364,10 @@ const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
     id: string,
     old: string,
     password: string,
-    password2: string
+    password2: string,
+    hash?: string
   ) => {
-    const body = { userid: id, oldpassword: old, password, password2 };
+    const body = { userid: id, oldpassword: old, password, password2, hash: hash };
     return fetch(
       combineUrlAndPath(
         REACT_APP_AUTH_API,

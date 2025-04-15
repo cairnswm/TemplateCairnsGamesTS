@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { accessElf } from "../../auth/utils/accessElf";
-import Navigation from "../../application/Navigation";
+import Navigation from "../../components/Navigation";
 
 const PaidSubscriptionsPage = () => {
   useEffect(() => {

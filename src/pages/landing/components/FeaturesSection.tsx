@@ -1,5 +1,5 @@
 import React from "react";
-import { PersonCircle } from "../../../icons";
+import { Bug, LightBulb, PersonCircle, Star } from "../../../icons";
 
 function FeaturesSection() {
   return (
@@ -17,7 +17,7 @@ function FeaturesSection() {
         <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
           <div className="relative">
             <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-              <PersonCircle className="h-6 w-6" />
+              <Star className="h-6 w-6" />
             </div>
             <div className="mt-5">
               <h3 className="text-lg font-medium text-gray-900">
@@ -32,7 +32,7 @@ function FeaturesSection() {
 
           <div className="relative">
             <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-              <PersonCircle className="h-6 w-6" />
+              <LightBulb className="h-6 w-6" />
             </div>
             <div className="mt-5">
               <h3 className="text-lg font-medium text-gray-900">
@@ -46,7 +46,7 @@ function FeaturesSection() {
 
           <div className="relative">
             <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-              <PersonCircle className="h-6 w-6" />
+              <Bug className="h-6 w-6" />
             </div>
             <div className="mt-5">
               <h3 className="text-lg font-medium text-gray-900">

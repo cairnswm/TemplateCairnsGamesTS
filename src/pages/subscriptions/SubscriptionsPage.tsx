@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSubscriptions } from "../../auth/context/SubscriptionsContext";
 import { accessElf } from "../../auth/utils/accessElf";
-import Navigation from "../../application/Navigation";
+import Navigation from "../../components/Navigation";
 import { useNavigate } from "react-router-dom";
 
 const SubscriptionsPage = () => {

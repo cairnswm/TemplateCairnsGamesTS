@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "../../application/Navigation";
+import Navigation from "../../components/Navigation";
 import Button from "../../components/Button";
 import Alert from "../../components/Alert";
 import Badge from "../../components/Badge";

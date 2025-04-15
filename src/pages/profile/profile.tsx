@@ -2,7 +2,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import { accessElf } from '../../auth/utils/accessElf';
 import { useAuth } from '../../auth/hooks/useAuth';
 import AvatarUpload from './AvatarUpload';
-import Navigation from '../../application/Navigation';
+import Navigation from '../../components/Navigation';
 import Container from '../../components/Container';
 
 interface ProfilePageProps {
@@ -83,7 +83,6 @@ const ProfilePage: React.FC<ProfilePageProps> = () => {
       <Navigation />
       <div className="max-w-2xl mx-auto mt-2">
         <div className="flex flex-col items-center mb-6">
-          <div className="w-24 h-24 rounded-full mb-4">
             <AvatarUpload user={user} />
             <input
               type="file"
@@ -93,7 +92,6 @@ const ProfilePage: React.FC<ProfilePageProps> = () => {
                 if (file) handleUploadSuccess(file.name);
               }}
             />
-          </div>
           <h2 className="text-xl font-semibold">Profile</h2>
         </div>
 
@@ -116,7 +114,7 @@ const ProfilePage: React.FC<ProfilePageProps> = () => {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full border rounded p-2"
+              className={`w-full border rounded p-2 ${!isEditing && "bg-dark-100"}`}
               disabled={!isEditing}
             />
           </div>
@@ -126,7 +124,7 @@ const ProfilePage: React.FC<ProfilePageProps> = () => {
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="w-full border rounded p-2"
+              className={`w-full border rounded p-2 ${!isEditing && "bg-dark-100"}`}
               disabled={!isEditing}
             />
           </div>

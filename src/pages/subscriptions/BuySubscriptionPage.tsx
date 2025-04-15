@@ -1,5 +1,5 @@
 import { accessElf } from "../../auth/utils/accessElf";
-import Navigation from "../../application/Navigation";
+import Navigation from "../../components/Navigation";
 import { useSubscriptions } from "../../auth/context/SubscriptionsContext";
 import { useState } from "react";
 import Payment from "./PaymentPage";
