@@ -6,17 +6,16 @@ import RegisterPage from "./auth/RegisterPage";
 import ForgotPage from "./auth/ForgotPage";
 import ChangePassword from "./auth/ChangePassword";
 import HomePage from "./pages/home/home";
-import ProfilePage from "./pages/profile/profile";
-import SystemPage from "./pages/system/system";
-import SubscriptionsPage from "./pages/subscriptions/SubscriptionsPage";
-import BuySubscriptionPage from "./pages/subscriptions/BuySubscriptionPage";
-import PaidSubscriptionsPage from "./pages/subscriptions/PaidSubscriptionsPage";
+import ProfilePage from "./auth/pages/profile/profile";
+import SystemPage from "./auth/pages/system/system";
+import SubscriptionsPage from "./auth/pages/subscriptions/SubscriptionsPage";
+import BuySubscriptionPage from "./auth/pages/subscriptions/BuySubscriptionPage";
+import PaidSubscriptionsPage from "./auth/pages/subscriptions/PaidSubscriptionsPage";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./auth/hooks/useAuth";
 
 function App() {
   const { user } = useAuth();
-  console.log("========= USER ========", user);
 
   useEffect(() => {
     if (window.location.hash.startsWith("#reset")) {

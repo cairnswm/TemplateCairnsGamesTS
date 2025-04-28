@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import useFileLoader from "../../auth/hooks/useFileLoader";
-import { combineUrlAndPath } from "../../auth/utils/combineUrlAndPath";
-import { REACT_APP_FILES } from "../../env";
-import { User } from "../../auth/types/userTypes";
+import useFileLoader from "../../hooks/useFileLoader";
+import { combineUrlAndPath } from "../../utils/combineUrlAndPath";
+import { REACT_APP_FILES } from "../../../env";
+import { User } from "../../../types/userTypes";
 
 interface AvatarUploadProps {
   user?: User;

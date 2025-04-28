@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import InputGroup from "../components/InputGroup";
 import { Eye, EyeSlash } from "../icons";
+import Alert from "../components/Alert";
+import { useAuth } from "./hooks/useAuth";
 
 function RegisterPage() {
   accessElf.track("RegisterPage");
@@ -12,15 +14,27 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(false);
+  const [error, setError] = useState<string>();
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.error("Passwords do not match");
+      setError("Passwords do not match");
       return;
     }
     try {
+      const res = await register(email, password, confirmPassword);      
+      console.log("Register Result", res);
+      if (res.errors) {
+        if (Array.isArray(res.errors)) {
+          setError(res.errors[0].message);
+        } else {
+          setError(res.errors.message);
+        }
+        return
+      }
       console.log("Register request sent for:", email);
     } catch (error) {
       console.error("Registration failed:", error);
@@ -39,6 +53,14 @@ function RegisterPage() {
         <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
           Sign Up
         </h2>
+
+        
+        {error && (
+          <Alert variant="danger" onDismiss={() => setError(undefined)} timeout={3000}>
+            {error}
+          </Alert>
+        )}
+
         <form className="space-y-4" onSubmit={handleRegister}>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">

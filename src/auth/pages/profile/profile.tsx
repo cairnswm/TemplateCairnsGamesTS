@@ -1,9 +1,9 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import { accessElf } from '../../auth/utils/accessElf';
-import { useAuth } from '../../auth/hooks/useAuth';
+import { accessElf } from '../../utils/accessElf';
+import { useAuth } from '../../hooks/useAuth';
 import AvatarUpload from './AvatarUpload';
-import Navigation from '../../components/Navigation';
-import Container from '../../components/Container';
+import Navigation from '../../../application/Navigation';
+import Container from '../../../components/Container';
 
 interface ProfilePageProps {
 }

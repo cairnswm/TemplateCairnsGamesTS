@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { Eye } from "lucide-react";
 import { EyeSlash } from "../icons";
 import InputGroup from "../components/InputGroup";
+import Alert from "../components/Alert";
 
 const LoginPage = () => {
   accessElf.track("LoginPage");
@@ -19,12 +20,21 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(false);
+  const [error, setError] = useState<string>();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await login(email, password);
       console.log("Login Result", res);
+      if (res.errors) {
+        if (Array.isArray(res.errors)) {
+          setError(res.errors[0].message);
+        } else {
+          setError(res.errors.message);
+        }
+        return
+      }
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
@@ -43,6 +53,12 @@ const LoginPage = () => {
         <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
           Sign In
         </h2>
+
+        {error && (
+          <Alert variant="danger" onDismiss={() => setError(undefined)} timeout={3000}>
+            {error}
+          </Alert>
+        )}
 
         <form className="space-y-4">
           <div>

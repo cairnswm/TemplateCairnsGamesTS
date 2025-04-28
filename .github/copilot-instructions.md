@@ -62,3 +62,7 @@ When working with collections of data, add an active<Item> to the context so tha
 ## Webshare
 
 use /src/components/WebShae to wrap shareable content.
+
+## Forms
+
+- Do not use onSubmit Handlers

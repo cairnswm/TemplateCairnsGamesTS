@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PayGate from "./payment/PayGate";
-import { useTenant } from "../../auth/hooks/useTenant";
-import { useAuth } from "../../auth/hooks/useAuth";
-import { useSubscriptions } from "../../auth/context/SubscriptionsContext";
-import { accessElf } from "../../auth/utils/accessElf";
-import Container from "../../components/Container";
-import Button from "../../components/Button";
+import { useTenant } from "../../hooks/useTenant";
+import { useAuth } from "../../hooks/useAuth";
+import { useSubscriptions } from "../../context/SubscriptionsContext";
+import { accessElf } from "../../utils/accessElf";
+import Container from "../../../components/Container";
+import Button from "../../../components/Button";
 
 interface SubscriptionItem {
   name?: string;

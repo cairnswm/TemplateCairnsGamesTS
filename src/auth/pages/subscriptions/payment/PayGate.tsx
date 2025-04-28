@@ -1,9 +1,9 @@
 import React from "react";
 import PayGateButton from "./PayGateButton";
-import { combineUrlAndPath } from "../../../auth/utils/combineUrlAndPath";
-import { REACT_APP_PAYWEB3_API } from "../../../env";
-import { useTenant } from "../../../auth/hooks/useTenant";
-import { useAuth } from "../../../auth/context/AuthContext";
+import { combineUrlAndPath } from "../../../utils/combineUrlAndPath";
+import { REACT_APP_PAYWEB3_API } from "../../../../env";
+import { useTenant } from "../../../hooks/useTenant";
+import { useAuth } from "../../../context/AuthContext";
 
 interface PayGateProps {
   onGetOrder: () => Promise<{ id: string; total_price: number } | null>;
